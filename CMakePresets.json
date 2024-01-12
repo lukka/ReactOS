@@ -1,0 +1,44 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 16,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "ROS",
+            "displayName": "ROS",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build42",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                },
+                "ENABLE_CCACHE": {
+                    "type": "BOOL",
+                    "value": "0"
+                },
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "toolchain-gcc.cmake"
+                },
+                "ARCH": {
+                    "type": "STRING",
+                    "value": "$env{ARCH}"
+                }
+            },
+            "environment": {
+                "ARCH": "$env{ROS_ARCH}"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build",
+            "inherits": "ROS",
+            "displayName": "Build ROS"
+        }
+    ]
+}
